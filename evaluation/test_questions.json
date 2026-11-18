@@ -1,0 +1,82 @@
+[
+  {
+    "question": "উপন্যাসের শুরুতে যাত্রীদের নৌকা কোথা থেকে ফিরছিল?",
+    "expected_answer": "নৌকাটি গঙ্গাসাগর থেকে ফিরছিল।",
+    "expected_chapter": "কপালকুণ্ডলা (বঙ্কিমচন্দ্র চট্টোপাধ্যায়, ১৮৭০)/প্রথম খণ্ড/প্রথম পরিচ্ছেদ",
+    "source_url": "https://bn.wikisource.org/wiki/%E0%A6%95%E0%A6%AA%E0%A6%BE%E0%A6%B2%E0%A6%95%E0%A7%81%E0%A6%A3%E0%A7%8D%E0%A6%A1%E0%A6%B2%E0%A6%BE_%28%E0%A6%AC%E0%A6%99%E0%A7%8D%E0%A6%95%E0%A6%BF%E0%A6%AE%E0%A6%9A%E0%A6%A8%E0%A7%8D%E0%A6%A6%E0%A7%8D%E0%A6%B0_%E0%A6%9A%E0%A6%9F%E0%A7%8D%E0%A6%9F%E0%A7%8B%E0%A6%AA%E0%A6%BE%E0%A6%A7%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%AF%E0%A6%BC%2C_%E0%A7%A7%E0%A7%AE%E0%A7%AD%E0%A7%A6%29/%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A6%A5%E0%A6%AE_%E0%A6%96%E0%A6%A3%E0%A7%8D%E0%A6%A1/%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A6%A5%E0%A6%AE_%E0%A6%AA%E0%A6%B0%E0%A6%BF%E0%A6%9A%E0%A7%8D%E0%A6%9B%E0%A7%87%E0%A6%A6",
+    "answerable": true,
+    "reference_passage": "এক খানি যাত্রীর নৌকা গঙ্গাসাগর হইতে প্রত্যাগমন করিতেছিল"
+  },
+  {
+    "question": "নাবিকেরা কী কারণে বহর থেকে বিচ্ছিন্ন হয়ে পড়েছিল?",
+    "expected_answer": "ঘন কুয়াশায় দিক নির্ণয় করতে না পারায় তারা বহর থেকে বিচ্ছিন্ন হয়েছিল।",
+    "expected_chapter": "কপালকুণ্ডলা (বঙ্কিমচন্দ্র চট্টোপাধ্যায়, ১৮৭০)/প্রথম খণ্ড/প্রথম পরিচ্ছেদ",
+    "source_url": "https://bn.wikisource.org/wiki/%E0%A6%95%E0%A6%AA%E0%A6%BE%E0%A6%B2%E0%A6%95%E0%A7%81%E0%A6%A3%E0%A7%8D%E0%A6%A1%E0%A6%B2%E0%A6%BE_%28%E0%A6%AC%E0%A6%99%E0%A7%8D%E0%A6%95%E0%A6%BF%E0%A6%AE%E0%A6%9A%E0%A6%A8%E0%A7%8D%E0%A6%A6%E0%A7%8D%E0%A6%B0_%E0%A6%9A%E0%A6%9F%E0%A7%8D%E0%A6%9F%E0%A7%8B%E0%A6%AA%E0%A6%BE%E0%A6%A7%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%AF%E0%A6%BC%2C_%E0%A7%A7%E0%A7%AE%E0%A7%AD%E0%A7%A6%29/%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A6%A5%E0%A6%AE_%E0%A6%96%E0%A6%A3%E0%A7%8D%E0%A6%A1/%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A6%A5%E0%A6%AE_%E0%A6%AA%E0%A6%B0%E0%A6%BF%E0%A6%9A%E0%A7%8D%E0%A6%9B%E0%A7%87%E0%A6%A6",
+    "answerable": true,
+    "reference_passage": "রাত্রিশেষে ঘোরতর কুজ্ঝটিকা দিগন্ত ব্যাপ্ত করিয়াছিল; নাবিকেরা দিঙ্‌নিরূপণ করিতে না পারিয়া বহর হইতে দূরে পড়িয়াছিল"
+  },
+  {
+    "question": "রান্নার কাঠ জোগাড় করতে অন্য যাত্রীরা রাজি হননি কেন?",
+    "expected_answer": "তাঁরা বাঘের ভয়ে কাঠ জোগাড় করতে রাজি হননি।",
+    "expected_chapter": "কপালকুণ্ডলা (বঙ্কিমচন্দ্র চট্টোপাধ্যায়, ১৮৭০)/প্রথম খণ্ড/দ্বিতীয় পরিচ্ছেদ",
+    "source_url": "https://bn.wikisource.org/wiki/%E0%A6%95%E0%A6%AA%E0%A6%BE%E0%A6%B2%E0%A6%95%E0%A7%81%E0%A6%A3%E0%A7%8D%E0%A6%A1%E0%A6%B2%E0%A6%BE_%28%E0%A6%AC%E0%A6%99%E0%A7%8D%E0%A6%95%E0%A6%BF%E0%A6%AE%E0%A6%9A%E0%A6%A8%E0%A7%8D%E0%A6%A6%E0%A7%8D%E0%A6%B0_%E0%A6%9A%E0%A6%9F%E0%A7%8D%E0%A6%9F%E0%A7%8B%E0%A6%AA%E0%A6%BE%E0%A6%A7%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%AF%E0%A6%BC%2C_%E0%A7%A7%E0%A7%AE%E0%A7%AD%E0%A7%A6%29/%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A6%A5%E0%A6%AE_%E0%A6%96%E0%A6%A3%E0%A7%8D%E0%A6%A1/%E0%A6%A6%E0%A7%8D%E0%A6%AC%E0%A6%BF%E0%A6%A4%E0%A7%80%E0%A6%AF%E0%A6%BC_%E0%A6%AA%E0%A6%B0%E0%A6%BF%E0%A6%9A%E0%A7%8D%E0%A6%9B%E0%A7%87%E0%A6%A6",
+    "answerable": true,
+    "reference_passage": "ব্যাঘ্রভয়ে উপর হইতে কাষ্ঠ সংগ্রহ করিয়া আনিতে কেহই স্বীকৃত হইল না"
+  },
+  {
+    "question": "নবকুমারকে যেখানে ফেলে যাওয়া হয়, তার কাছাকাছি কোন দুটি গ্রামের উল্লেখ আছে?",
+    "expected_answer": "দৌলতপুর ও দরিয়াপুর।",
+    "expected_chapter": "কপালকুণ্ডলা (বঙ্কিমচন্দ্র চট্টোপাধ্যায়, ১৮৭০)/প্রথম খণ্ড/তৃতীয় পরিচ্ছেদ",
+    "source_url": "https://bn.wikisource.org/wiki/%E0%A6%95%E0%A6%AA%E0%A6%BE%E0%A6%B2%E0%A6%95%E0%A7%81%E0%A6%A3%E0%A7%8D%E0%A6%A1%E0%A6%B2%E0%A6%BE_%28%E0%A6%AC%E0%A6%99%E0%A7%8D%E0%A6%95%E0%A6%BF%E0%A6%AE%E0%A6%9A%E0%A6%A8%E0%A7%8D%E0%A6%A6%E0%A7%8D%E0%A6%B0_%E0%A6%9A%E0%A6%9F%E0%A7%8D%E0%A6%9F%E0%A7%8B%E0%A6%AA%E0%A6%BE%E0%A6%A7%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%AF%E0%A6%BC%2C_%E0%A7%A7%E0%A7%AE%E0%A7%AD%E0%A7%A6%29/%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A6%A5%E0%A6%AE_%E0%A6%96%E0%A6%A3%E0%A7%8D%E0%A6%A1/%E0%A6%A4%E0%A7%83%E0%A6%A4%E0%A7%80%E0%A6%AF%E0%A6%BC_%E0%A6%AA%E0%A6%B0%E0%A6%BF%E0%A6%9A%E0%A7%8D%E0%A6%9B%E0%A7%87%E0%A6%A6",
+    "answerable": true,
+    "reference_passage": "তাহার অনতিদূরে দৌলতপুর ও দরিয়াপুর নামে দুই ক্ষুদ্র গ্রাম এক্ষণে দৃষ্ট হয়"
+  },
+  {
+    "question": "আবার দেখা না হওয়া পর্যন্ত কাপালিক নবকুমারকে কী করতে নিষেধ করেছিলেন?",
+    "expected_answer": "কাপালিক নবকুমারকে কুটির ছেড়ে যেতে নিষেধ করেছিলেন।",
+    "expected_chapter": "কপালকুণ্ডলা (বঙ্কিমচন্দ্র চট্টোপাধ্যায়, ১৮৭০)/প্রথম খণ্ড/পঞ্চম পরিচ্ছেদ",
+    "source_url": "https://bn.wikisource.org/wiki/%E0%A6%95%E0%A6%AA%E0%A6%BE%E0%A6%B2%E0%A6%95%E0%A7%81%E0%A6%A3%E0%A7%8D%E0%A6%A1%E0%A6%B2%E0%A6%BE_%28%E0%A6%AC%E0%A6%99%E0%A7%8D%E0%A6%95%E0%A6%BF%E0%A6%AE%E0%A6%9A%E0%A6%A8%E0%A7%8D%E0%A6%A6%E0%A7%8D%E0%A6%B0_%E0%A6%9A%E0%A6%9F%E0%A7%8D%E0%A6%9F%E0%A7%8B%E0%A6%AA%E0%A6%BE%E0%A6%A7%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%AF%E0%A6%BC%2C_%E0%A7%A7%E0%A7%AE%E0%A7%AD%E0%A7%A6%29/%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A6%A5%E0%A6%AE_%E0%A6%96%E0%A6%A3%E0%A7%8D%E0%A6%A1/%E0%A6%AA%E0%A6%9E%E0%A7%8D%E0%A6%9A%E0%A6%AE_%E0%A6%AA%E0%A6%B0%E0%A6%BF%E0%A6%9A%E0%A7%8D%E0%A6%9B%E0%A7%87%E0%A6%A6",
+    "answerable": true,
+    "reference_passage": "কাপালিক তাঁহাকে পুনঃ সাক্ষাৎ পর্য্যন্ত কুটীর ত্যাগ করিতে নিষেধ করিয়াছে"
+  },
+  {
+    "question": "কোন চিহ্ন দেখে কাপালিক বুঝলেন নবকুমার বন্দিদশা থেকে বেরিয়ে গেছেন?",
+    "expected_answer": "কাপালিক ছেঁড়া লতার বাঁধন দেখে বুঝেছিলেন।",
+    "expected_chapter": "কপালকুণ্ডলা (বঙ্কিমচন্দ্র চট্টোপাধ্যায়, ১৮৭০)/প্রথম খণ্ড/সপ্তম পরিচ্ছেদ",
+    "source_url": "https://bn.wikisource.org/wiki/%E0%A6%95%E0%A6%AA%E0%A6%BE%E0%A6%B2%E0%A6%95%E0%A7%81%E0%A6%A3%E0%A7%8D%E0%A6%A1%E0%A6%B2%E0%A6%BE_%28%E0%A6%AC%E0%A6%99%E0%A7%8D%E0%A6%95%E0%A6%BF%E0%A6%AE%E0%A6%9A%E0%A6%A8%E0%A7%8D%E0%A6%A6%E0%A7%8D%E0%A6%B0_%E0%A6%9A%E0%A6%9F%E0%A7%8D%E0%A6%9F%E0%A7%8B%E0%A6%AA%E0%A6%BE%E0%A6%A7%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%AF%E0%A6%BC%2C_%E0%A7%A7%E0%A7%AE%E0%A7%AD%E0%A7%A6%29/%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A6%A5%E0%A6%AE_%E0%A6%96%E0%A6%A3%E0%A7%8D%E0%A6%A1/%E0%A6%B8%E0%A6%AA%E0%A7%8D%E0%A6%A4%E0%A6%AE_%E0%A6%AA%E0%A6%B0%E0%A6%BF%E0%A6%9A%E0%A7%8D%E0%A6%9B%E0%A7%87%E0%A6%A6",
+    "answerable": true,
+    "reference_passage": "ছিন্ন লতা বন্ধনের উপর দৃষ্টি পড়িল। তখন স্বরূপ অনুভূত করিতে পারিয়া কাপালিক নবকুমারের অন্বেষণে ধাবিত হইল"
+  },
+  {
+    "question": "মতিবিবি গহনা রাখার জন্য কী ধরনের কৌটা পাঠিয়েছিলেন?",
+    "expected_answer": "রুপো দিয়ে বাঁধানো হাতির দাঁতের কৌটা।",
+    "expected_chapter": "কপালকুণ্ডলা (বঙ্কিমচন্দ্র চট্টোপাধ্যায়, ১৮৭০)/দ্বিতীয় খণ্ড/চতুর্থ পরিচ্ছেদ",
+    "source_url": "https://bn.wikisource.org/wiki/%E0%A6%95%E0%A6%AA%E0%A6%BE%E0%A6%B2%E0%A6%95%E0%A7%81%E0%A6%A3%E0%A7%8D%E0%A6%A1%E0%A6%B2%E0%A6%BE_%28%E0%A6%AC%E0%A6%99%E0%A7%8D%E0%A6%95%E0%A6%BF%E0%A6%AE%E0%A6%9A%E0%A6%A8%E0%A7%8D%E0%A6%A6%E0%A7%8D%E0%A6%B0_%E0%A6%9A%E0%A6%9F%E0%A7%8D%E0%A6%9F%E0%A7%8B%E0%A6%AA%E0%A6%BE%E0%A6%A7%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%AF%E0%A6%BC%2C_%E0%A7%A7%E0%A7%AE%E0%A7%AD%E0%A7%A6%29/%E0%A6%A6%E0%A7%8D%E0%A6%AC%E0%A6%BF%E0%A6%A4%E0%A7%80%E0%A6%AF%E0%A6%BC_%E0%A6%96%E0%A6%A3%E0%A7%8D%E0%A6%A1/%E0%A6%9A%E0%A6%A4%E0%A7%81%E0%A6%B0%E0%A7%8D%E0%A6%A5_%E0%A6%AA%E0%A6%B0%E0%A6%BF%E0%A6%9A%E0%A7%8D%E0%A6%9B%E0%A7%87%E0%A6%A6",
+    "answerable": true,
+    "reference_passage": "মতিবিবি গহনা রাখিবার জন্য একটী রৌপ্যজড়িত হস্তিদন্তের কৌটা পাঠাইয়া দিলেন"
+  },
+  {
+    "question": "লুৎফ্-উন্নিসা তাঁর মূল্যবান পোশাকটি কাকে দিতে চেয়েছিলেন?",
+    "expected_answer": "তিনি পেষ্‌মন্‌কে পোশাকটি দিতে চেয়েছিলেন।",
+    "expected_chapter": "কপালকুণ্ডলা (বঙ্কিমচন্দ্র চট্টোপাধ্যায়, ১৮৭০)/তৃতীয় খণ্ড/পঞ্চম পরিচ্ছেদ",
+    "source_url": "https://bn.wikisource.org/wiki/%E0%A6%95%E0%A6%AA%E0%A6%BE%E0%A6%B2%E0%A6%95%E0%A7%81%E0%A6%A3%E0%A7%8D%E0%A6%A1%E0%A6%B2%E0%A6%BE_%28%E0%A6%AC%E0%A6%99%E0%A7%8D%E0%A6%95%E0%A6%BF%E0%A6%AE%E0%A6%9A%E0%A6%A8%E0%A7%8D%E0%A6%A6%E0%A7%8D%E0%A6%B0_%E0%A6%9A%E0%A6%9F%E0%A7%8D%E0%A6%9F%E0%A7%8B%E0%A6%AA%E0%A6%BE%E0%A6%A7%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%AF%E0%A6%BC%2C_%E0%A7%A7%E0%A7%AE%E0%A7%AD%E0%A7%A6%29/%E0%A6%A4%E0%A7%83%E0%A6%A4%E0%A7%80%E0%A6%AF%E0%A6%BC_%E0%A6%96%E0%A6%A3%E0%A7%8D%E0%A6%A1/%E0%A6%AA%E0%A6%9E%E0%A7%8D%E0%A6%9A%E0%A6%AE_%E0%A6%AA%E0%A6%B0%E0%A6%BF%E0%A6%9A%E0%A7%8D%E0%A6%9B%E0%A7%87%E0%A6%A6",
+    "answerable": true,
+    "reference_passage": "সুবর্ণ মুক্তাদি খচিত বসন পরিত্যাগ করিয়া পেষ্‌মনকে কহিলেন যে “এই পোষাকটি তুমি লও।”"
+  },
+  {
+    "question": "কাপালিক তাঁর পূজার স্থান কোথায় স্থাপন করেছিলেন?",
+    "expected_answer": "গঙ্গার তীরে একটি বড় সৈকতভূমিতে।",
+    "expected_chapter": "কপালকুণ্ডলা (বঙ্কিমচন্দ্র চট্টোপাধ্যায়, ১৮৭০)/চতুর্থ খণ্ড/দশম পরিচ্ছেদ",
+    "source_url": "https://bn.wikisource.org/wiki/%E0%A6%95%E0%A6%AA%E0%A6%BE%E0%A6%B2%E0%A6%95%E0%A7%81%E0%A6%A3%E0%A7%8D%E0%A6%A1%E0%A6%B2%E0%A6%BE_%28%E0%A6%AC%E0%A6%99%E0%A7%8D%E0%A6%95%E0%A6%BF%E0%A6%AE%E0%A6%9A%E0%A6%A8%E0%A7%8D%E0%A6%A6%E0%A7%8D%E0%A6%B0_%E0%A6%9A%E0%A6%9F%E0%A7%8D%E0%A6%9F%E0%A7%8B%E0%A6%AA%E0%A6%BE%E0%A6%A7%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%AF%E0%A6%BC%2C_%E0%A7%A7%E0%A7%AE%E0%A7%AD%E0%A7%A6%29/%E0%A6%9A%E0%A6%A4%E0%A7%81%E0%A6%B0%E0%A7%8D%E0%A6%A5_%E0%A6%96%E0%A6%A3%E0%A7%8D%E0%A6%A1/%E0%A6%A6%E0%A6%B6%E0%A6%AE_%E0%A6%AA%E0%A6%B0%E0%A6%BF%E0%A6%9A%E0%A7%8D%E0%A6%9B%E0%A7%87%E0%A6%A6",
+    "answerable": true,
+    "reference_passage": "কাপালিক যথায় আপন পূজা স্থান সংস্থাপন করিয়াছিলেন তথায় কপালকুণ্ডলাকে লইয়া গেলেন। সে গঙ্গাতীরে এক বৃহৎ সৈকতভূমি।"
+  },
+  {
+    "question": "২০২২ সালের ফিফা বিশ্বকাপ কোন দেশ জিতেছিল?",
+    "expected_answer": "দুঃখিত, এই প্রশ্নের উত্তর নির্বাচিত বইয়ের তথ্যের মধ্যে পাওয়া যায়নি।",
+    "expected_chapter": null,
+    "source_url": null,
+    "answerable": false,
+    "reference_passage": null
+  }
+]
