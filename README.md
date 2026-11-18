@@ -68,8 +68,10 @@ The Streamlit entry point is `app.py`. The `ui/` directory holds presentation co
 1. Requests fetches the landing page and chapter pages. Beautiful Soup discovers nested subpages and extracts readable text in chapter order.
 2. NFC normalization and whitespace cleanup preserve Bengali punctuation. LangChain splits chapters individually with paragraph and Bengali sentence boundaries. The baseline uses 800 characters and a 120-character target overlap to fit nearby dialogue and narrative context within a retrieval unit. Recursive splitting can yield a smaller actual overlap at natural boundaries. These numbers are starting settings.
 3. [BAAI/bge-m3](https://huggingface.co/BAAI/bge-m3) provides 1,024-dimensional dense multilingual vectors for the Bengali passages and questions in the same semantic space. The same normalized embedding configuration is used at build and query time. Its multilingual training makes it appropriate for Bengali retrieval, with effectiveness measured by the assignment benchmark.
-4. LangChain FAISS uses squared L2 distance on normalized vectors. The chatbot starts with five passages and, if it cannot verify an answer, searches up to 40 results and checks the additional passages. Vectors persist as a native FAISS file, with documents and metadata in JSON. The loader checks corpus and index hashes and avoids pickle deserialization. Only load files generated locally with the build command. Hashes detect mismatches and do not authenticate files from other people.
-5. The model proposes a Bengali answer and verbatim evidence. The application checks each quote against its retrieved chunk, then makes a separate model call to judge whether the verified quotes fully support the answer and address the question. It constructs citations from stored chapter metadata. Insufficient support returns the assignment's exact Bengali fallback. The semantic check can still make errors, so review the per-question results.
+4. LangChain FAISS uses squared L2 distance on normalized vectors. The chatbot starts with five passages. If it cannot verify an answer, it searches up to 40 results and keeps the original passages available alongside the additional results. Vectors persist as a native FAISS file, with documents and metadata in JSON. The loader checks corpus and index hashes and avoids pickle deserialization. Only load files generated locally with the build command. Hashes detect mismatches and do not authenticate files from other people.
+5. The model proposes verbatim evidence. The application checks each quote against its retrieved chunk and checks the chapter title, number, and source URL against the saved corpus. The verifier compares the requested event with the event in the quote, checking participants, object, action, and relationship. It must explicitly accept the match before an answer is returned. A rejected or incomplete verdict triggers the wider retrieval pass. If the wider pass also has insufficient support, the application returns the assignment's exact Bengali fallback.
+
+HTTP 429 can trigger up to two retries with exponential backoff and jitter. The retry waits honor longer provider hints within a 60-second per-wait budget. A hint beyond that budget or an explicit exhausted daily or zero quota stops the request. The evaluation command can space draft, verifier, grader and retry requests with `--request-interval`. Set the interval to suit the project's current quota. [Gemini rate limits](https://ai.google.dev/gemini-api/docs/rate-limits)
 
 ## Ten required questions and bonus
 
@@ -88,7 +90,7 @@ Review the quote in the original source and keep it within 500 characters. The s
 
 ```powershell
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
-.\.venv\Scripts\python.exe -m evaluation.evaluate --strategy baseline
+.\.venv\Scripts\python.exe -m evaluation.evaluate --strategy baseline --request-interval 7 --runs 3
 .\.venv\Scripts\python.exe -m scripts.build_index --strategy a
 .\.venv\Scripts\python.exe -m scripts.build_index --strategy b
 .\.venv\Scripts\python.exe -m evaluation.compare_chunking
@@ -106,6 +108,10 @@ The measured results on the nine answerable questions were:
 | A | 500 / 75 | 440 | 5/9 | 55.56% |
 | B | 1000 / 150 | 218 | 4/9 | 44.44% |
 
-Strategy A won the bonus comparison. The app uses the baseline, which matched A's hit rate with 164 fewer chunks. The per-case ranks are in `evaluation/results/`. Before the wider retrieval pass was added, Gemini 3.1 Flash-Lite passed 4 of 9 answerable cases and the out-of-scope case. A targeted live check recovered the two-villages answer and still abstained on the out-of-scope question. Gemini rate-limited the subsequent full evaluation.
+Strategy A won the bonus comparison. The app uses the baseline, which matched A's hit rate with 164 fewer chunks. The regenerated comparison and its per-case ranks are saved locally in `evaluation/results/chunking_comparison.json`.
+
+Three paced Gemini 3.1 Flash-Lite evaluations completed all ten cases. Each scored 9/10 automatically and 8/10 on source review. Case 8 passed in all three runs after the verifier rejected the first-pass evidence and recovered the dress passage at rank 12. The out-of-scope question returned the exact fallback with no citations in every run. Cases 6 and 9 remain open. The verifier confused an event with its later discovery in case 6 and conflated two adjacent locations in case 9. The automated grader also accepted case 9.
+
+The evaluator records the initial and wide reference ranks, ranks of cited chunks, answer correctness, citation authenticity and relevance, and the exact no-answer check. A repeated evaluation saves a separate `evaluation-baseline-run-N.json` for each completed run. A provider interruption writes a `-partial.json` report and stops the batch. Pending cases have a null grade.
 
 See the [verification report](Docs/verification.md) and the [demo recording script](Docs/demo.md).

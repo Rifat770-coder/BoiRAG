@@ -13,10 +13,11 @@ render_theme()
 
 
 @st.cache_resource
-def get_rag(strategy, corpus_hash):
+def get_rag(strategy, corpus_hash, _chapters):
     llm = load_llm()
     store = load_index(strategy, load_embeddings(), corpus_hash)
-    rag = BookRAG(retriever_for(store), llm, fallback_retriever=retriever_for(store, k=FALLBACK_TOP_K))
+    rag = BookRAG(retriever_for(store), llm, fallback_retriever=retriever_for(store, k=FALLBACK_TOP_K),
+                  chapters=_chapters)
     return rag, store.index.ntotal
 
 
@@ -37,7 +38,7 @@ try:
     title, publication = book_details(book_title)
     render_header(title, publication, book_title, chapters)
     with st.spinner("বইয়ের সূচি লোড হচ্ছে…"):
-        rag, chunk_count = get_rag(strategy, corpus_hash)
+        rag, chunk_count = get_rag(strategy, corpus_hash, chapters)
 except BookNotConfigured:
     st.info("চ্যাট চালু করতে নিবন্ধিত বাংলা উইকিসংকলন বইয়ের ঠিকানা দিন।")
     st.markdown("`.env` ফাইলে `BOOK_URL` সেট করুন। এরপর README অনুযায়ী বই সংগ্রহ করে সূচি তৈরি করুন।")
