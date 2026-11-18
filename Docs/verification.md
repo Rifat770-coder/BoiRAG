@@ -10,10 +10,10 @@ The eight required criteria total 100 marks. The chunking comparison is worth up
 | Chunking and preprocessing | 15 | [Preprocessing](../src/preprocessing.py) | The book produced 276 baseline, 440 strategy A, and 218 strategy B chunks. All nine reference passages remained intact in at least one chunk for each strategy before retrieval. | Passed on book text. |
 | Multilingual embeddings | 20 | [Embeddings](../src/embeddings.py) | The local BGE-M3 weight file matched the official Hugging Face LFS SHA-256. The 276 saved baseline vectors and fresh Bengali queries have 1,024 dimensions. | Passed on book text. |
 | FAISS and LangChain retrieval | 15 | [Vector store](../src/vector_store.py), [index command](../scripts/build_index.py) | The 276-vector baseline reloaded with chapter metadata. Exact reference passages appeared in 5/9 initial searches and 9/9 searches at rank 40 or better. The fixture rejected altered index bytes and changed corpus hashes. | Retrieval passed. Four references require wider retrieval. |
-| Grounded answers and abstention | 20 | [RAG](../src/rag.py) | Source review confirmed 7/9 answerable cases and 1/1 out-of-scope cases in each of three live runs. All 27 citations matched the corpus and chunks. Case 8 recovered at rank 12 in each run. | Partial. Cases 6 and 9 failed semantic grounding in all three runs. |
+| Grounded answers and abstention | 20 | [RAG](../src/rag.py) | The first span trial recovered case 6 at rank 11 and case 8 at rank 12. The completeness trial recovered cases 6 and 9, and case 8 failed. The combined implementation passed local regressions. | Partial. The combined live batch was interrupted before all cases could be verified. |
 | Streamlit chat | 5 | [Interface](../app.py) | The local server passed its health check. Streamlit AppTest opened the real index and displayed chat input with Gemini configured. A fixture test checked an answer, chapter passage, and conversation history. | Configured startup and fixture chat passed. |
-| Code and README | 5 | [Setup and usage](../README.md), [dependencies](../requirements.txt), [environment example](../.env.example) | Dependency compatibility, Python compilation, CLI help, and all 11 local tests passed. Tests cover rejection of unrelated evidence, wider recovery, wrong chapter metadata, top-five short-circuiting, and bounded 429 retry. | Passed local checks. |
-| Ten mandatory test questions | 5 | [Questions](../evaluation/test_questions.json), [evaluator](../evaluation/evaluate.py) | Three paced live runs each completed all ten cases. Each scored 9/10 automatically and 8/10 on source review. | Dataset and execution passed. Two answers remain incorrect. |
+| Code and README | 5 | [Setup and usage](../README.md), [dependencies](../requirements.txt), [environment example](../.env.example) | Dependency compatibility, Python compilation and all 14 local tests passed. The three new regressions use the verified event and location passages and check separate grader inputs. | Passed local checks. |
+| Ten mandatory test questions | 5 | [Questions](../evaluation/test_questions.json), [evaluator](../evaluation/evaluate.py) | Two development trials completed all ten cases. A three-run batch on the final implementation stopped during answer grading on case 1 after HTTP 429. | Dataset verified. Three complete runs on the final code are pending. |
 | Bonus comparison | +10 | [Comparison](../evaluation/compare_chunking.py) | Built and reloaded both BGE-M3 FAISS indexes. Strategy A hit 5/9 (55.56%), strategy B hit 4/9 (44.44%), and the baseline hit 5/9 (55.56%). The unanswerable case was excluded from retrieval scoring. | Passed with measured results. |
 | Demo preparation | N/A | [Recording script](demo.md) | The script covers the source, pipeline, five questions including an abstention, measured results, and the repository in 4 minutes 30 seconds. No video was recorded. | Script ready. |
 
@@ -51,15 +51,15 @@ The application now checks the quoted text against the retrieved chunk and its c
 
 A live schema trial rejected the ring evidence and invoked the wider search, but strict extra output fields caused multiple false abstentions. That trial passed 2/10 and is preserved in `evaluation/results/evaluation-baseline-schema-trial.json`. The final verifier contract requires only the support verdict and answer.
 
-## Three-run live verification
+## Previous three-run live verification
 
 On 19 November 2026, three sequential Gemini 3.1 Flash-Lite runs used seven seconds between requests. All 30 cases completed. The verdict and citations were the same across the three runs.
 
 | Run | Automated | Source review | Passed on source review | Failed on source review | Exact no-answer |
 | --- | ---: | ---: | --- | --- | ---: |
-| [1](../evaluation/results/evaluation-baseline-run-1.json) | 9/10 | 8/10 | 1–5, 7, 8, 10 | 6, 9 | 1/1 |
-| [2](../evaluation/results/evaluation-baseline-run-2.json) | 9/10 | 8/10 | 1–5, 7, 8, 10 | 6, 9 | 1/1 |
-| [3](../evaluation/results/evaluation-baseline-run-3.json) | 9/10 | 8/10 | 1–5, 7, 8, 10 | 6, 9 | 1/1 |
+| [1](../evaluation/results/evaluation-baseline-run-1-prior.json) | 9/10 | 8/10 | 1–5, 7, 8, 10 | 6, 9 | 1/1 |
+| [2](../evaluation/results/evaluation-baseline-run-2-prior.json) | 9/10 | 8/10 | 1–5, 7, 8, 10 | 6, 9 | 1/1 |
+| [3](../evaluation/results/evaluation-baseline-run-3-prior.json) | 9/10 | 8/10 | 1–5, 7, 8, 10 | 6, 9 | 1/1 |
 
 | Case | Exact reference rank | Cited rank | Citation authentic | Answer correct on source review | Citation supports the answer as stated |
 | --- | ---: | ---: | --- | --- | --- |
@@ -79,6 +79,30 @@ On 19 November 2026, three sequential Gemini 3.1 Flash-Lite runs used seven seco
 - **Case 9.** The rank-1 passage distinguishes the worship site's sandbank from the second tract across from it, which holds the cremation ground. The answer conflated those locations. Both the runtime verifier and automated grader accepted the answer. The source-review score counts it as a failure.
 
 All 27 returned quotes and their chapter titles, numbers, and URLs were checked against both the saved chunks and the verified corpus. The three no-answer responses had no citations. The 100-mark rubric remains partially verified because semantic grounding failed in cases 6 and 9.
+
+## Semantic grounding changes
+
+The previous verifier could paraphrase freely after a positive support verdict. Chapter 6 described the action that created the clue, and the verifier accepted that passage for a question about who observed the clue later. The chapter 32 quote was authentic and contained both locations. The verifier blended their descriptions, and the combined grader accepted the shared location words without rejecting the added claim.
+
+The verifier now requests an exact answer span from an authenticated quote. Its prompt ties observations to the named observer and attaches each spatial description to the entity it describes. The application rejects a synthesized span that is absent from the quotes and sends a rejected first pass through the existing wider retrieval. The evaluator now grades the answer against the verified reference and checks citation relevance separately against the actual quotes.
+
+The first span-based trial passed 10/10 automatically. Source review found that case 2 omitted the initiating cause (fog) and case 9 omitted the specific terrain (a large sandbank). Both omissions were counted as failures, for 8/10 on source review. The trial is saved as `evaluation/results/evaluation-baseline-span-trial.json`. The verifier now requests the complete span needed to retain cause and location specificity, and the answer grader explicitly checks for those omissions.
+
+Three regression tests exercise the actual bond-cutting and later-observation passages, the two-site passage and a falsely approved blended answer, and separate answer and citation judgments. The existing related-object, citation, and no-answer tests also passed.
+
+The completeness trial recovered the required details in cases 2 and 9 and rejected the earlier action in case 6. It passed 9/10 on both automated grading and source review. Case 8 again accepted the ring evidence in that trial. The completed trial is preserved in `evaluation/results/evaluation-baseline-completeness-trial.json`. Its second run was interrupted by HTTP 429 during citation grading on case 1 and is preserved in `evaluation/results/evaluation-baseline-completeness-trial-run-2-partial.json`. The combined implementation first checks relevance using the verifier that rejected the ring evidence in the first span trial, then extracts the complete answer from the authenticated quotes selected by that check.
+
+## Latest live attempt
+
+The final batch used nine seconds between Gemini requests and retained the existing bounded retry policy. The first run saved a correct, authentic rank-1 citation for case 1 and then hit HTTP 429 in answer grading. A subsequent single-request diagnostic also returned HTTP 429. The response exposed no quota label or retry hint, so the reset time could not be established from the API response.
+
+| Run on final implementation | Answer output | Automated score | Source-reviewed accuracy |
+| --- | --- | --- | --- |
+| [1](../evaluation/results/evaluation-baseline-run-1-partial.json) | Case 1 answered. Cases 2–10 weren't reached. | Incomplete, no graded cases | Case 1 correct. No ten-case score. |
+| 2 | Unstarted after the batch interruption | Unavailable | Unavailable |
+| 3 | Unstarted after the batch interruption | Unavailable | Unavailable |
+
+The completed development trials are evidence for their respective versions. The final implementation's handling of cases 6, 8, 9 and the live out-of-scope question still needs confirmation. The local regressions for these paths passed.
 
 ## Bonus evidence
 
