@@ -1,2 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# The ingestion report and FAISS metadata hash the exact corpus bytes.
+/data/chapters.json -text

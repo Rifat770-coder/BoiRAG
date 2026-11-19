@@ -65,6 +65,17 @@ Index creation prints the chunk count, configured dimensions, and sample metadat
 
 The Streamlit entry point is `app.py`. The `ui/` directory holds presentation code and assets, `src/` holds the crawler and RAG pipeline, and `scripts/` holds the ingestion and indexing commands. The `evaluation/` directory contains test questions and benchmark commands. The app reads its configuration from `.env` and uses the generated corpus and FAISS files under `data/` and `indexes/`.
 
+### Render deployment
+
+Deploy from the repository root with these commands.
+
+| Setting | Command |
+| --- | --- |
+| Build Command | `pip install -r requirements.txt` |
+| Start Command | `python -m streamlit run app.py --server.address 0.0.0.0 --server.port "$PORT"` |
+
+The repository includes the verified corpus and baseline FAISS index. In Render's environment settings, set `BOOK_URL` to the `book_url` in [the ingestion report](data/ingestion_report.json), use `INDEX_STRATEGY=baseline`, and configure `LLM_MODEL` and `LLM_API_KEY` for chat. The app loads BGE-M3 locally and needs more memory than Render's 512 MB Free instance provides.
+
 1. Requests fetches the landing page and chapter pages. Beautiful Soup discovers nested subpages and extracts readable text in chapter order.
 2. NFC normalization and whitespace cleanup preserve Bengali punctuation. LangChain splits chapters individually with paragraph and Bengali sentence boundaries. The baseline uses 800 characters and a 120-character target overlap to fit nearby dialogue and narrative context within a retrieval unit. Recursive splitting can yield a smaller actual overlap at natural boundaries. These numbers are starting settings.
 3. [BAAI/bge-m3](https://huggingface.co/BAAI/bge-m3) provides 1,024-dimensional dense multilingual vectors for the Bengali passages and questions in the same semantic space. The same normalized embedding configuration is used at build and query time. Its multilingual training makes it appropriate for Bengali retrieval, with effectiveness measured by the assignment benchmark.

@@ -4,6 +4,12 @@ __pycache__/
 *.py[cod]
 /data/*
 !/data/.gitkeep
+!/data/chapters.json
+!/data/ingestion_report.json
 /indexes/*
 !/indexes/.gitkeep
+!/indexes/baseline/
+/indexes/baseline/*
+!/indexes/baseline/index.faiss
+!/indexes/baseline/index.json
 /evaluation/results/
