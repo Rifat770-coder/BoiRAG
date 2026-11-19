@@ -68,10 +68,11 @@ def render_sidebar(title, publication, chapters, chunk_count, model, prompts, cl
         cover = asset_url("kapalkundala.webp", "image/webp") if title == "কপালকুণ্ডলা" else ""
         author = publication.rsplit(",", 1)[0]
         cover_style = f' style="background-image:url({cover})"' if cover else ""
-        st.html(f'<div class="book-cover"{cover_style}><strong>{escape(title)}</strong>'
+        st.html(f'<div class="sidebar-book-summary">'
+                f'<div class="book-cover"{cover_style}><strong>{escape(title)}</strong>'
                 f'<span>{escape(author)}</span></div>'
                 f'<div class="sidebar-book"><h2>{escape(title)}</h2>'
-                f'<p>{escape(publication)}</p></div>')
+                f'<p>{escape(publication)}</p></div></div>')
         count = f"{chunk_count:,}".translate(digits) if isinstance(chunk_count, int) else "—"
         st.html(f"""<dl class="book-stats">
           <div><dt><span aria-hidden="true">▤</span> অধ্যায় (মোট)</dt>

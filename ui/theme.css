@@ -330,29 +330,65 @@
     z-index: 1001;
     top: 0;
     left: 0;
-    height: 100vh;
-    height: 100dvh;
-    max-height: 100dvh;
+    height: 100vh !important;
+    height: 100dvh !important;
     width: min(352px, 87vw) !important;
     margin: 0;
+    border-radius: 0 20px 20px 0;
   }
   [data-testid="stSidebarContent"] {
+    display: flex;
+    flex-direction: column;
     height: 100%;
-    min-height: 0;
-    overflow-y: auto;
-    overscroll-behavior-y: contain;
+    padding: 0;
+    overflow: hidden;
+    scrollbar-gutter: auto;
+  }
+  [data-testid="stSidebarHeader"] {
+    position: static;
+    flex: 0 0 auto;
+    height: 44px;
+    margin: 0;
+    padding-inline: 12px;
+  }
+  [data-testid="stSidebarCollapseButton"] {
+    visibility: visible;
+  }
+  [data-testid="stSidebarCollapseButton"] button {
+    min-height: 44px;
+    min-width: 44px;
   }
   [data-testid="stSidebarUserContent"] {
-    padding: 44px 14px calc(18px + env(safe-area-inset-bottom, 0px));
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 0 16px calc(16px + env(safe-area-inset-bottom, 0px));
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
   }
   [data-testid="stSidebar"][data-collapsed="true"] {
     transform: translateX(-110%) !important;
     visibility: hidden;
   }
   [data-testid="stSidebarResizeHandle"] { display: none; }
-  .sidebar-brand { font-size: clamp(15px, 4.5vw, 19px); white-space: normal; }
+  .sidebar-brand {
+    padding-bottom: 9px;
+    margin-bottom: 0;
+    font-size: clamp(15px, 4.5vw, 19px);
+    white-space: normal;
+  }
   .sidebar-brand::before { width: 34px; }
-  .book-cover { width: min(160px, 68%, 22dvh); }
+  .sidebar-book-summary {
+    display: grid;
+    grid-template-columns: min(88px, 34%) minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+  }
+  .book-cover { width: 100%; margin: 0; padding: 8px 4px; }
+  .book-cover strong { font-size: 13px; overflow-wrap: anywhere; }
+  .book-cover span { font-size: 10px; overflow-wrap: anywhere; }
+  .sidebar-book h2 { font-size: 21px; overflow-wrap: anywhere; }
+  .sidebar-book p { font-size: 15px; }
+  .book-stats { margin: 0; padding: 6px 0; font-size: 15px; }
   .book-stats div { flex-wrap: wrap; }
   .st-key-literary-header { min-height: unset; margin-bottom: 12px; }
   .st-key-literary-header::before { inset: 0 -8px 0 auto; width: 62%; opacity: .53; }
