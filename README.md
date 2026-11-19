@@ -1,5 +1,7 @@
 # BoiRAG
 
+**Live app:** [https://boirag.onrender.com](https://boirag.onrender.com)
+
 ![BoiRAG dashboard showing the Kapalkundala book sidebar, suggested Bengali questions, and the response to an out-of-scope greeting](Docs/Dashboard.png)
 
 BoiRAG answers Bengali questions about one prose book from Bengali Wikisource. It cites chapter URLs and shows supporting Bengali text for accepted answers.
