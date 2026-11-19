@@ -1,9 +1,9 @@
 import os
 
 import streamlit as st
+from langchain_core.runnables import RunnableLambda
 
-from config import EVALUATION, FALLBACK_TOP_K, MODEL, read_json
-from src.embeddings import load_embeddings
+from config import EVALUATION, FALLBACK_TOP_K, MODEL, STRATEGIES, TOP_K, read_json
 from src.rag import BookRAG, ModelNotConfigured, load_llm
 from src.vector_store import BookNotConfigured, load_index, retriever_for, verified_corpus
 from ui.presentation import book_details, chapter_label, render_header, render_sidebar, render_theme
@@ -12,9 +12,26 @@ st.set_page_config(page_title="বইয়ের সঙ্গে কথোপক�
 render_theme()
 
 
-@st.cache_resource
-def get_rag(strategy, corpus_hash, _chapters):
+@st.cache_resource(show_spinner=False)
+def get_rag(strategy, corpus_hash, on_render, _chapters):
+    if strategy not in STRATEGIES:
+        raise ValueError("INDEX_STRATEGY must be baseline, a, or b.")
     llm = load_llm()
+    if on_render:
+        from src.keyword_search import KeywordIndex
+        from src.preprocessing import make_chunks
+
+        chunks = make_chunks(_chapters, *STRATEGIES[strategy])
+        index = KeywordIndex(chunks)
+        rag = BookRAG(
+            RunnableLambda(lambda question: index.search(question, k=TOP_K)), llm,
+            fallback_retriever=RunnableLambda(lambda question: index.search(question, k=FALLBACK_TOP_K)),
+            chapters=_chapters,
+        )
+        return rag, len(chunks)
+
+    from src.embeddings import load_embeddings
+
     store = load_index(strategy, load_embeddings(), corpus_hash)
     rag = BookRAG(retriever_for(store), llm, fallback_retriever=retriever_for(store, k=FALLBACK_TOP_K),
                   chapters=_chapters)
@@ -32,13 +49,14 @@ def render_answer(answer, message_index):
 
 
 strategy = os.getenv("INDEX_STRATEGY", "baseline")
+on_render = os.getenv("RENDER") == "true"
 try:
     chapters, corpus_hash = verified_corpus()
     book_title = chapters[0]["book_title"]
     title, publication = book_details(book_title)
     render_header(title, publication, book_title, chapters)
     with st.spinner("বইয়ের সূচি লোড হচ্ছে…"):
-        rag, chunk_count = get_rag(strategy, corpus_hash, chapters)
+        rag, chunk_count = get_rag(strategy, corpus_hash, on_render, chapters)
 except BookNotConfigured:
     st.info("চ্যাট চালু করতে নিবন্ধিত বাংলা উইকিসংকলন বইয়ের ঠিকানা দিন।")
     st.markdown("`.env` ফাইলে `BOOK_URL` সেট করুন। এরপর README অনুযায়ী বই সংগ্রহ করে সূচি তৈরি করুন।")
@@ -69,7 +87,8 @@ try:
 except (OSError, ValueError):
     test_questions = []
 
-suggested = render_sidebar(title, publication, chapters, chunk_count, MODEL, test_questions, clear_chat)
+search_label = "বাংলা কীওয়ার্ড" if on_render else MODEL
+suggested = render_sidebar(title, publication, chapters, chunk_count, search_label, test_questions, clear_chat)
 
 for message_index, (question, answer) in enumerate(st.session_state.messages):
     with st.chat_message("user", avatar=":material/person:"):

@@ -4,12 +4,6 @@ from contextlib import ExitStack
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 
-import faiss
-import numpy as np
-from langchain_community.docstore.in_memory import InMemoryDocstore
-from langchain_community.vectorstores import FAISS
-from langchain_core.documents import Document
-
 from config import BOOK_URL, DATA, DIMENSION, INDEXES, MODEL, STRATEGIES, TOP_K, read_json, write_json
 from src.crawler import article_url
 
@@ -36,6 +30,9 @@ def verified_corpus():
 
 
 def save_index(strategy, chunks, embeddings, corpus_hash):
+    import faiss
+    from langchain_community.vectorstores import FAISS
+
     ids = [doc.metadata["chunk_id"] for doc in chunks]
     try:
         store = FAISS.from_documents(chunks, embeddings, ids=ids)
@@ -65,6 +62,12 @@ def save_index(strategy, chunks, embeddings, corpus_hash):
 
 
 def load_index(strategy, embeddings, corpus_hash):
+    import faiss
+    import numpy as np
+    from langchain_community.docstore.in_memory import InMemoryDocstore
+    from langchain_community.vectorstores import FAISS
+    from langchain_core.documents import Document
+
     if strategy not in STRATEGIES:
         raise ValueError("INDEX_STRATEGY must be baseline, a, or b.")
     directory = INDEXES / strategy

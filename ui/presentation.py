@@ -77,7 +77,7 @@ def render_sidebar(title, publication, chapters, chunk_count, model, prompts, cl
           <div><dt><span aria-hidden="true">▤</span> অধ্যায় (মোট)</dt>
             <dd>{str(len(chapters)).translate(digits)}</dd></div>
           <div><dt><span aria-hidden="true">◇</span> ইনডেক্সকৃত চাঙ্ক</dt><dd>{count}</dd></div>
-          <div><dt><span aria-hidden="true">▣</span> এমবেডিং মডেল</dt>
+          <div><dt><span aria-hidden="true">▣</span> অনুসন্ধান পদ্ধতি</dt>
             <dd><code title="{escape(model)}">{escape(model.split("/")[-1])}</code></dd></div>
         </dl>""")
         st.markdown(":material/bolt: **দ্রুত কাজ**")

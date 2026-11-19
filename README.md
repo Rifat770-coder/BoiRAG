@@ -74,7 +74,7 @@ Deploy from the repository root with these commands.
 | Build Command | `pip install -r requirements.txt` |
 | Start Command | `python -m streamlit run app.py --server.address 0.0.0.0 --server.port "$PORT"` |
 
-The repository includes the verified corpus and baseline FAISS index. In Render's environment settings, set `BOOK_URL` to the `book_url` in [the ingestion report](data/ingestion_report.json), use `INDEX_STRATEGY=baseline`, and configure `LLM_MODEL` and `LLM_API_KEY` for chat. The app loads BGE-M3 locally and needs more memory than Render's 512 MB Free instance provides.
+The repository includes the verified corpus and baseline FAISS index. In Render's environment settings, set `BOOK_URL` to the `book_url` in [the ingestion report](data/ingestion_report.json), use `INDEX_STRATEGY=baseline`, and configure `LLM_MODEL` and `LLM_API_KEY` for chat. On Render, the app ranks passages with Bengali keyword search to fit the Free instance's memory limit. Answer generation and citation verification still use the configured API. Local runs use BGE-M3 and FAISS.
 
 1. Requests fetches the landing page and chapter pages. Beautiful Soup discovers nested subpages and extracts readable text in chapter order.
 2. NFC normalization and whitespace cleanup preserve Bengali punctuation. LangChain splits chapters individually with paragraph and Bengali sentence boundaries. The baseline uses 800 characters and a 120-character target overlap to fit nearby dialogue and narrative context within a retrieval unit. Recursive splitting can yield a smaller actual overlap at natural boundaries. These numbers are starting settings.
