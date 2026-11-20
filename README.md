@@ -1,6 +1,8 @@
 # BoiRAG
 
-**Live app:** [https://boirag.onrender.com](https://boirag.onrender.com)
+**Live app:** [https://boirag.onrender.com](https://boirag.onrender.com) · The app runs on Render’s free tier, so it may take a moment to load.
+
+**Demo video:** [Watch the BoiRAG demo on Google Drive](https://drive.google.com/file/d/161gDp50o2j0POMu3qTjEkunoPV_3-gaH/view?usp=sharing)
 
 ![BoiRAG dashboard showing the Kapalkundala book sidebar, suggested Bengali questions, and the response to an out-of-scope greeting](Docs/Dashboard.png)
 
